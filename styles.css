@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.wheel-container {
+    position: relative;
+    text-align: center;
+}
+
+.wheel {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 10px solid #333;
+    background: conic-gradient(
+        #ff9999 0% 25%,   /* Primo quadrante */
+        #99ff99 25% 50%,  /* Secondo quadrante */
+        #9999ff 50% 75%,  /* Terzo quadrante */
+        #ffff99 75% 100%  /* Quarto quadrante */
+    );
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.sector {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    transform-origin: 100% 100%;
+    transform: rotate(calc(var(--i) * 90deg));
+    background-color: rgba(255, 255, 255, 0.5); /* Background per migliorare la leggibilità */
+}
+
+.indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #333;
+    transform: translate(-50%, -50%) rotate(0deg);
+    z-index: 1;
+    /* Posiziona il triangolino sulla circonferenza della ruota */
+    margin-top: -20px; /* Regola questa distanza per posizionare correttamente il triangolino */
+}
+
+button {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#result {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+    display: none;
+}
+
+.confetto {
+    position: absolute;
+    border-radius: 50%;
+    animation: fall 2s ease-out forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-1000px) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px) scale(1.5);
+        opacity: 0;
+    }
+}
